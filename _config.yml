@@ -2,7 +2,7 @@ title:            Rice DH
 tagline:          A digital history project site
 description:      Describe your website.
 #Comment out url when working locally to resolve base urls correctly
-# url: http://ricedh.github.io
+url: http://ricedh.github.io
 
 # Owner/author information
 owner:
