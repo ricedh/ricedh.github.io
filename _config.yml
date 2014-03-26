@@ -15,8 +15,8 @@ owner:
 # Links to include in top navigation
 # For external links add external: true
 links:
-  - title: About
-    url: /about
+  - title: Articles
+    url: /articles/index.html
 #  - title: Github
 #    url: https://github.com/ColeTownsend/Balzac-for-Jekyll
 #    external: true
