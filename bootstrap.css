@@ -1466,6 +1466,11 @@ textarea {
     display: none !important;
   }
 }
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+  .hidden-tablet {
+    display: none !important;
+  }
+}
 @media (max-width: 769px) {
   .hidden-desktop {
     display: inherit !important;
