@@ -78,7 +78,7 @@ p img {border: 0; float:left; margin: 10px 20px 10px 0px;}
 .header {
 	width: 100%;
 	padding-top: 2em;
-	margin-bottom: 50px;
+	margin-bottom: 60px;
 	font-size: 1.2em; 
 }
 
@@ -96,6 +96,10 @@ p img {border: 0; float:left; margin: 10px 20px 10px 0px;}
 	color: #999;
 	padding-top: 30px;
 	padding-bottom: 10px;
+	}
+
+.header a:hover {
+    border-bottom: none;
 	}
 
 .nav a {
