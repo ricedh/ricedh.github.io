@@ -29,7 +29,6 @@ li ol li{font-size: 1.0em;}
 li ul li{font-size: 1.0em;}
 .statcounter {border: 0; }
 .large {font-size:2.1em; margin-top:0; padding-top:0;}
-.right {margin-left: 2%; margin-right: 6%; text-align:left; }
 
 /* HEADERS */
 
@@ -67,40 +66,24 @@ p img {border: 0; float:left; margin: 10px 20px 10px 0px;}
     -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
 }
 
-.header img:hover {
+.nav img:hover {
     filter: none;
     -webkit-filter: grayscale(0);
 }
 
 /* MISC DIVS AND CLASSES */
 
-/*.nav {
-	text-transform: lowercase;
-	font-variant: small-caps;
-	font-family: Helvetica, Arial, sans-serif; 
-	font-size: 1.2em;
-}*/
-
-.toc {
-    float:right;
-	background-color: #eee;
-	padding: 10px 10px;
-	position: relative;
-}
-
-.toc a:hover {
-	text-decoration: none;
-}
-
 .header {
 	width: 100%;
 	padding-top: 2em;
-	padding-bottom: 4em;
+	margin-bottom: 6em;
 	font-size: 1.2em; 
 }
-.header img {
+
+.nav img {
     float:left;
 	color: #666;
+    border: 1px solid #aaa;
 	}
 
 .header h1 {
@@ -113,7 +96,28 @@ p img {border: 0; float:left; margin: 10px 20px 10px 0px;}
 	padding-bottom: 10px;
 	}
 
+.nav a {
+    float: left;
+	display: block;
+	margin-right: 3%;
+	width: 13%;
+	padding-bottom: 0;
+	margin-bottom: 0;
+	}
+
+.nav a:hover {
+    border-bottom: 0px;
+	color: #333;
+	font-size: 0.8em;
+	}
+
+.nav a img {
+	}
+
 .splash { display:inline-block;}
+
+#hover .poptext {visibility:hidden; border: none; float:left; margin:0; padding:0}
+#hover:hover .poptext {visibility:visible;}
 
 @media (max-width: 769px) {
   .header {padding: 0;}
