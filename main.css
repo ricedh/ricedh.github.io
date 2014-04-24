@@ -116,8 +116,10 @@ p img {border: 0; float:left; margin: 10px 20px 10px 0px;}
 
 .splash { display:inline-block;}
 
+@media (min-width:770px) and (max-width: 1024px) {
 #hover .poptext {visibility:hidden; border: none; float:left; margin:0; padding:0}
 #hover:hover .poptext {visibility:visible;}
+}
 
 @media (max-width: 769px) {
   .header {padding: 0;}
