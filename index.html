@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--This page was produced by pandoc using a shell script. See http://wcm1.web.rice.edu/colophon.html for more information.-->
+  <title>Digital History Methods</title>
+  <link rel="stylesheet" href="./bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="./main.css" type="text/css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Crimson+Text:40000italic,700,700italic" rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+
+
+<body>
+
+<div class="container">
+<div class="row">
+<div class="span2">&nbsp;</div>
+<div class="span7">
+
+
+<div class="header">
+
+<!--Begin content of the main markdown file for this page, which is processed by pandoc and output as html.-->
+
+
+<h1 style="font-size:3.6em; margin-bottom:0; padding-bottom:0">
+DIGITAL HISTORY METHODS
+</h1>
+
+<p class="large">
+<img style="width:13%; padding-bottom: 0; border: 1px solid #aaa" src="./digital-runawayad.png" />can help historians understand and present the past by supplementing traditional techniques like the close reading of historical documents.
+</p>
+
+<p>As students and scholars in the Spring 2014 course <a href="http://digitalhistory.blogs.rice.edu">Digital History Methods</a> at Rice University, we created this site to showcase a few digital history methods and demonstrate both their advantages and their limitations as historical tools, using nineteenth-century runaway slave advertisements as a sample data set.</p>
+<div class="splash">
+<p>
+<div class="splashthumb">
+<a href="01-palladio.html"><img src="./01-palladio.png" /></a>
+<p class="caption">
+Test caption
+</p>
+</div>
+<div class="splashthumb">
+<a href="02-voyant.html"><img src="./02-voyant.png" /></a>
+<p class="caption">
+Test caption
+</p>
+</div>
+</p>
+<p>
+<div class="splashthumb">
+<a href="03-ner.html"><img src="./03-ner.png"   /></a>
+<p class="caption">
+Test caption
+</p>
+</div>
+<div class="splashthumb">
+<a href=""><img src="./03-ner.png"   /></a>
+</p>
+<p class="caption">
+Test caption
+</p>
+</div>
+</p>
+<p>
+<div class="splashthumb">
+<a href="05-twitterbot.html"><img src="./05-twitterbot.png"   /></a>
+<p class="caption">
+Test caption
+</p>
+</div>
+</p>
+
+<p class="large right">
+See below for more information about <a href="#our-data">our dataset</a> of runaway ads, and then click on these thumbnails for pages about our methods.
+</p>
+</div>
+
+<h2 id="our-data">Our Data</h2>
+<p>We have applied these methods to a specific kind of historical source: runaway slave advertisements from the antebellum U.S. South. Our ads are drawn from two sources. First, in collaboration with students in Dr. Andrew Torget’s digital history class at the University of North Texas, who have published some of their own findings and methods on a <a href="http://torget.us/HIST5100/research-blog/">research blog</a>, we identified and transcribed all runaway ads published between 1835 and 1860 in two Texas newspapers that have been digitized on the <a href="http://texashistory.unt.edu">Portal to Texas History</a>—the <em>Telegraph and Texas Register</em>, published in Houston for most of its run, and the <em>State Gazette</em>, published in Austin. We also analyzed advertisements from Arkansas and Mississippi that were transcribed as part of the <a href="http://aquila.usm.edu/drs/">Documenting Runaway Slaves</a> project at the University of Southern Mississippi.</p>
+<p>Before analyzing these sources, we first used digital tools to create one text file for each advertisement in our corpus. Each file’s content was comprised exclusively of transcribed text from the ad. We used the filename of each text file to store relevant metadata such as when the ad was published and where.</p>
+<p>Our project conforms to the fifth tenet of <a href="http://en.wikipedia.org/wiki/Unix_philosophy#Mike_Gancarz:_The_UNIX_Philosophy">the Unix philosophy</a>: <em>Store data in flat text files.</em> That is, before using any of the methods described on this site, we created a corpus of ads in which each advertisement got its own text file.</p>
+<p>Information about ads from Texas newspapers—including transcribed text, date published, newspaper title, and a permalink URL to the ad’s image in the Portal to Texas History—were first collected in a Google Drive spreadsheet shared by students at Rice and UNT. After downloading each sheet of ads in CSV format, we then used a <a href="https://github.com/ricedh/adparsers/blob/master/txparser.py">Python script</a> to turn every unique transcribed ad (excluding reprints) into a file whose name looks like this:</p>
+<pre><code>TX_18430705_Telegraph_67531-metapth48242-m1-3-8502-3469.txt</code></pre>
+<p>where the first two letters represent the state in which the ad was published, the eight-digit string after the first underscore represents the date of publication in <code>YYYYDDMM</code> format, the string after the second underscore represents the abbreviated title of the newspaper, and the hyphen-separated strings after the third underscore represent unique information drawn from the permalink to the page image containing the ad in the Portal to Texas History.</p>
+<p>Ads collected as part of the <a href="http://aquila.usm.edu/drs/">Documenting Runaway Slaves</a> are currently made available in rich-text PDF files containing <a href="http://aquila.usm.edu/drs/4/">all Arkansas ads</a> and <a href="http://aquila.usm.edu/drs/1/">all Mississippi ads</a>. To burst these files into individual text files, we first used <a href="http://digitalhistory.blogs.rice.edu/2014/04/02/getting-ads-from-pdfs/">some native Mac tools and regular expressions</a> to extract and clean up the text from the PDFs, placing them all in a single text file for each state. <a href="https://github.com/ricedh/adparsers/blob/master/drsparser.py">Another Python script</a> then allowed us turn those cleaned text files into individual advertisement files whose names look like this:</p>
+<pre><code>AR_18631118_Washington-Telegraph_18631118-489.txt</code></pre>
+<p>where the first two letters represent the state in which the ad was published, the eight-digit string after the first underscore represents the issue date of the newspaper in which the ad appeared, transformed into <code>YYYYDDMM</code>, the string after the second underscore represents the title of the newspaper, and the string after the third underscore represents the date that serves as a header for each new ad in the Documenting Runaway Slaves PDF followed by a hyphen and a unique ID generated by the Python script.</p>
+<p>Storing our data in this way made it easy to regroup and recombine ads according to different criteria using simple bash commands, shell scripts, or graphical programs like the Finder in Mac OS X. Files could easily be sorted in chronological order or by other fields stored in the filename. Having the ads already split into small text files enhanced the performance of several of the digital tools we used, like MALLET and NER. And using information contained in the filenames, we were also able to use additional scripts to <a href="https://github.com/ricedh/adparsers/blob/master/countads.sh">count ads by year, month or day</a> or <a href="https://github.com/ricedh/adbot">to excerpt and Tweet ads</a>.</p>
+
+<!--End content from the main markdown file for this page.-->
+
+</article>
+
+
+</div>
+
+<div class="span3">&nbsp;</div>
+
+</div>
+</div>
+</body>
+</html>

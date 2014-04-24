@@ -1,0 +1,217 @@
+<style type="text/css">
+
+/* Some colors, fonts, and layout ideas adapted from https://github.com/klepas/klepas.org/blob/master/css/screen.css. The yellow colors are from Ethan Schoonover's Solarized project. See http://ethanschoonover.com/solarized. */
+
+html { overflow-y: scroll; }
+
+/* BODY */
+
+body {
+ font-family: "Calendas Plus", "Crimson Text", "Hoefler Text", "Georgia", serif;
+ /* color: #3b3b3b; */
+ -webkit-font-smoothing: antialiased;
+ /* Fix for webkit rendering */
+ text-size-adjust: 100%;
+ background: #f9f9f9;
+ min-height: 100%;
+ overflow-x: hidden;
+ height:800px;
+ text-align:center;
+ line-height: 1.6;
+ /* color:#073642; */
+ font-size: 78%;
+}
+
+/* PARAGRAPHS AND LISTS */
+ 
+p, li { font-size: 1.5em; text-align: left; float: clear;}
+li ol li{font-size: 1.0em;}
+li ul li{font-size: 1.0em;}
+.statcounter {border: 0; }
+.large {font-size:2.1em; margin-top:0; padding-top:0;}
+.right {margin-left: 6%; margin-right: 2%; text-align:right; }
+
+/* HEADERS */
+
+h1, h2, h3, h4, .footer h1 { text-align: left; font-family: 'Oswald', Helvetica, Arial, sans-serif; font-style: bold; }
+h1 { font-size: 3em; margin: 0 auto; }
+h2 { font-size: 2.4em; }
+h3 { font-size: 1.8em; }
+sup { line-height: 0; }
+
+h1 a:link, a:visited {
+   text-decoration: none;
+   color: #333;
+}
+
+h1,h2,h3,h4 a:visited {
+   text-decoration: none;
+   color: #333;
+}
+
+h1,h2,h3,h4 a:hover {
+   text-decoration: none;
+}
+
+/* IMAGES */
+
+p img {border: 0; float:left; margin: 10px 20px 10px 0px;}
+.caption {text-align: left; font-family: "Calendas Plus", "Crimson Text", "Hoefler Text", "Georgia", serif; font-style: italic; margin-bottom: 30px;}
+.figure img {width: 100%; margin: 30px 0 0 0; border: 1px solid #000;}
+.splashthumb {width: 45%; margin: 10px 20px 10px 0px; float:left;}
+.splashthumb img {display: inline-block;  border: 1px solid #aaa; float:left; }
+
+.gray {
+    filter: url("data:image/svg+xml;utf8,<svg%20xmlns='http://www.w3.org/2000/svg'><filter%20id='grayscale'><feColorMatrix%20type='matrix'%20values='0.3333%200.3333%200.3333%200%200%200.3333%200.3333%200.3333%200%200%200.3333%200.3333%200.3333%200%200%200%200%200%201%200'/></filter></svg>#grayscale"); /* Firefox 3.5+ */
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+}
+
+.header img:hover {
+    filter: none;
+    -webkit-filter: grayscale(0);
+}
+
+/* MISC DIVS AND CLASSES */
+
+/*.nav {
+	text-transform: lowercase;
+	font-variant: small-caps;
+	font-family: Helvetica, Arial, sans-serif; 
+	font-size: 1.2em;
+}*/
+
+.toc {
+    float:right;
+	background-color: #eee;
+	padding: 10px 10px;
+	position: relative;
+}
+
+.toc a:hover {
+	text-decoration: none;
+}
+
+.header {
+	width: 100%;
+	padding-top: 2em;
+	padding-bottom: 4em;
+	font-size: 1.2em; 
+}
+.header img {
+    float:left;
+	color: #666;
+	}
+
+.header h1 {
+    display: block;
+	position: relative;
+	font-family: 'Oswald', Helvetica, Arial, sans-serif;
+	font-size: 3.6em;
+	color: #999;
+	padding-top: 30px;
+	padding-bottom: 10px;
+	}
+
+.splash { display:inline-block;}
+
+@media (max-width: 769px) {
+  .header {padding: 0;}
+  div#shaded-block-on-phone {padding: 1em; padding-left: 2em; background-color: #eee8d5;}
+  .splashthumb {width: 96%;}
+  .splashthumb img {margin-right: 5%;}
+  .caption {float:left;}
+  .right {padding: 0; padding-top: 30px; margin: 0; float:left; text-align:left;}
+ }
+
+.nobullet{
+  list-style-type: none;
+  padding-left: 0;
+}
+
+
+div#category { text-align:left; color:#666; font-size: 1.8em; font-family: Helvetica, Arial, sans-serif; font-variant: small-caps;}
+
+div#dateline { text-align:left; color:#666; font-size: 1.5em; font-style: normal; margin-bottom: 1.8em;}
+
+article {padding-top: 8em; padding-bottom: 3em; }
+
+footer {font-size: 0.85em; padding: 1em; padding-left: 2em; background-color: #eee8d5;}
+
+hr {
+	border: 2px #eee8d5 solid;
+	width: 50%;
+	margin-top: 3em;
+	margin-bottom: 3em;
+}
+
+.well {
+	padding: 3em;
+	margin-bottom: 3em;
+	/*border: 1px #333 dotted;*/
+	text-align: justify;
+	font-size: 1.2em;
+	background: #eee8d5;
+}
+.footnotes {
+	font-size: 0.6em;
+}
+
+.url {
+ color: #073642;
+ background: #eee8d5;
+}
+
+/* LINKS */
+
+
+a:link, a:visited {
+ color: #3366BB;
+ text-decoration: none;
+}
+
+a:hover {
+ border-bottom: 1px solid; 
+ }
+
+
+.transparent a:link {
+	zoom: 1;
+	filter: alpha(opacity=30);
+	opacity: 0.3;
+}
+.transparent a:hover {
+	zoom: 1;
+	filter: alpha(opacity=70);
+	opacity: 0.7;
+}
+
+/* CODE */
+
+pre, code {text-align: left; font-family:Monaco, Courier, monospace; font-size:13px; line-height:1.8; color:#586e75; padding: 2px;}
+code a:link {color: #cb4b16;}
+    pre {margin-bottom:1.5em; border:1px solid #e5e5e5; padding:0.5em 1em; white-space:pre-wrap; word-wrap: break-word;}
+    code {background:#eee;}
+    pre code {background:transparent;}
+pre {
+    background-color:#eee;
+}
+
+// KeyWordTok
+.sourceCode .kw { color: #268BD2; }
+// DataTypeTok
+.sourceCode .dt { color: #268BD2; }
+
+// DecValTok (decimal value), BaseNTok, FloatTok
+.sourceCode .dv, .sourceCode .bn, .sourceCode .fl { color: #D33682; }
+// CharTok
+.sourceCode .ch { color: #DC322F; }
+// StringTok
+.sourceCode .st { color: #2AA198; }
+// CommentTok
+.sourceCode .co { color: #93A1A1; }
+// OtherTok
+.sourceCode .ot { color: #A57800; }
+// AlertTok
+.sourceCode .al { color: #CB4B16; font-weight: bold; }
+</style>
