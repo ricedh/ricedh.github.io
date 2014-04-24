@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--This page was produced by pandoc using a shell script. See http://wcm1.web.rice.edu/colophon.html for more information.-->
+  <meta name="author" content="Alyssa Anderson" />
+  <title>Using Voyant for Text Analysis | Digital History Methods</title>
+  <link rel="stylesheet" href="./bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="./main.css" type="text/css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700,700italic" rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+
+
+<body>
+
+<div class="container">
+<div class="row">
+<div class="span2">&nbsp;</div>
+<div class="span7">
+
+
+<div class="header">
+			<h1>DIGITAL HISTORY METHODS</h1>
+<a href="index.html"><img style="display: inline-block; margin-right: 3%; border: 1px solid #aaa" src="./digital-runawayad.png" class="gray" width="13%" /></a>
+<a href="01-palladio.html"><img style="display: inline-block; margin-right: 3%; border: 1px solid #aaa" src="./01-palladio.png" class="gray" width="13%" /></a>
+<a href="02-voyant.html"><img style="display: inline-block; margin-right: 3%; border: 1px solid #aaa" src="./02-voyant.png"  width="13%" /></a>
+<a href="03-ner.html"><img style="display: inline-block; margin-right: 3%; border: 1px solid #aaa" src="./03-ner.png" class="gray" width="13%" /></a>
+<a href=""><img style="display: inline-block; margin-right: 3%; border: 1px solid #aaa" src="./03-ner.png" class="gray" width="13%" /></a>
+<a href="05-twitterbot.html"><img style="display: inline-block; margin-right: 3%; border: 1px solid #aaa" src="./05-twitterbot.png" class="gray" width="13%" /></a>
+</div>
+
+
+<article>
+
+
+<!--The title is produced by the pandoc template using the title block at the top of the markdown file-->
+<h1>Using Voyant for Text Analysis</h1>
+<!--The author is produced by the pandoc template using the title block at the top of the markdown file-->
+<div id="dateline">
+By Alyssa Anderson
+</div>
+
+<!--Begin content of the main markdown file for this page, which is processed by pandoc and output as html.-->
+
+
+<p>Open with an embedded image from Voyant, and a <a href="http://voyant-tools.org/?corpus=1398028124350.4052&amp;stopList=stop.en.taporware.txt">link to the full corpus of Texas ads</a>.</p>
+<iframe width="0" height="0" src="http://voyant-tools.org/?corpus=1398028124350.4052&stopList=stop.en.taporware.txt"></iframe>
+
+<h1 id="rationale">Rationale</h1>
+<p>Digital text-mining tools can help researchers understand document collections that are prohibitively large for a close-reading. Our collection of runaway slave advertisements from Texas, Arkansas, and Mississippi totals over 2,500 individual ads! Not only would it be extremely time consuming to read this entire collection, the consistently short, boilerplate format of runaway ads can make it difficult to really distinguish between them. The ads from Texas, Arkansas, and Mississippi start to all look practically indistinguishable, making it difficult for close-reading alone to recognize pattern breaks between the states, without the assistance of computational data. This is where Voyant comes in. We hoped that the “distant-reading” capabilities of Voyant would be able to pick up on larger word usage trends that are not immediately apparent when reading with the human eye.</p>
+<p>Additionally, as we read through our initial collection of Texas runaway ads, it became clear that these ads tell us little about the perspectives of runaway slaves themselves. Information about the slave is always filtered through the attitudes and beliefs of the slaveholder. Working within the limitations of this category of primary source, we became increasingly interested in analyzing this language of the slaveholders. In what sort of discourse on slavery were these subscribers engaged, and were there any differences across state lines? Across time? Voyant’s efficient “reading” skills and visualization capabilities make it easy to immediately spot differences between multiple corpuses or trends across one corpus. As students who have primarily worked with close-reading in the past, digital text-mining tools such as Voyant offer another angle of analysis into a text.</p>
+<h1 id="methodology">Methodology</h1>
+<p><a href="http://voyant-tools.org/">Voyant</a> is a free, online text-analysis resource. Among its tools, it generates a word cloud of most frequent words, generates graphs of word frequency across the corpus, and lets you compare multiple documents. Once you have a text uploaded, you can play around within the Voyant “skin”, opening and closing different tools, or clicking on a particular word to see trends for that word specifically. It’s also possible to generate a link to the skin that can then be shared or embedded into a page, allowing others to play around with the data on their own.</p>
+<p>Once we had cleaned and prepared our collection of ads for analysis, using Voyant was very straightforward. The Voyant platform is compatible with a wide range of document formats, including plain text, HTML, XML, PDF, RTF, and MS Word. Once in the Voyant skin, it is easy to play around with tools simultaneously, as selecting a word in the “Summary” tool, for example, will automatically pull it up in the “Word Trends” tool. Use the “Words in the Entire Corpus” tool to easily search and store key words into a collection of “favourites”. Select multiple words in “Words in the Entire Corpus” to analyze them side-by-side.</p>
+<div class="figure">
+<img src="https://cloud.githubusercontent.com/assets/6466141/2782288/92621190-cb1d-11e3-8ea8-54b94c7d1c9a.png" alt="voyant-screenshot" /><p class="caption">voyant-screenshot</p>
+</div>
+<p>There are certain decisions that have to be made before even uploading your documents into Voyant. Throughout the digital reading process, one of our primary questions has been how to split the corpus of ads. For example, uploading a single document of all ads from a single state is useful for looking at language data in aggregate for a single state. This screenshot shows the word “negro” selected from all the Texas ads uploaded as one document.</p>
+<div class="figure">
+<img src="https://cloud.githubusercontent.com/assets/6466141/2782332/48828cca-cb1e-11e3-8d7b-5bd9282937de.png" alt="texas-all-screenshot" /><p class="caption">texas-all-screenshot</p>
+</div>
+<p>Because we were careful to keep our ads in chronological order, the Word Trends tool also shows trends over time. However, you can also make the choice to manually split a corpus into separate documents by time increments to more easily track specific changes across the corpus. Or, for an example of how Voyant could be applied to a different kind of primary source, a single book could be split into separate chapters. This screenshot shows the Texas ads split by decade:</p>
+<div class="figure">
+<img src="https://cloud.githubusercontent.com/assets/6466141/2782338/5902bc8c-cb1e-11e3-8e8a-d0c3cab9d319.png" alt="texas-all-decade-split-screenshot" /><p class="caption">texas-all-decade-split-screenshot</p>
+</div>
+<p>At a glance, it is easy to see that the Word Trends graph looks very different depending on whether the corpus is segmented into 10 even parts by Voyant, or split into 10-year increments. There’s not one right way to split a corpus, it just depends on what kind of analysis you want to focus on. It is good to keep in mind though, that these decisions made before the Voyant skin is even opened will alter the appearance of the data.</p>
+<p>Finally, certain corpus categories can be split by geographical location. This method of dividing a corpus is useful for comparing language trends across geographical lines. This screenshot shows the Texas corpus of ads split by the Houston area (<em>The Telegraph and Texas Register</em> 1836 to 1860) and the Austin area (<em>Texas Gazette</em> 1850 to 1860), and reveals that the word “negro” appears relatively more frequently in the Austin area.</p>
+<div class="figure">
+<img src="https://cloud.githubusercontent.com/assets/6466141/2782511/cc32c678-cb20-11e3-9729-9ff9e808fe37.png" alt="tx-split-screenshot" /><p class="caption">tx-split-screenshot</p>
+</div>
+<p>A few useful tips for using Voyant: To apply stopwords, click on the wrench icon in the upper right-hand corner to choose a pre-made list, or add your own. To save a url to the current Voyant skin, create an HTML link to embed, or download an image, click on the floppy icon.</p>
+<p>Find <a href="http://docs.voyant-tools.org/tools/">here</a> a list of all Voyant tools, including some which are not pre-loaded into the basic Voyant skin. For a tutorial on how to compare one Voyant skin corpus to a separate Voyant skin corpus, visit <a href="http://www.briancroxall.net/2012/07/18/comparing-corpora-in-voyant-tools/">this post</a> from Brian Croxall.</p>
+<h1 id="conclusions">Conclusions</h1>
+<p>Findings, questions, limitations.</p>
+
+<!--End content from the main markdown file for this page.-->
+
+</article>
+
+
+</div>
+
+<div class="span3">&nbsp;</div>
+
+</div>
+</div>
+</body>
+</html>
