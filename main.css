@@ -22,7 +22,7 @@ body {
  font-size: 78%;
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0) {body {font-family: "Georgia", "Times New Roman", serif;}}
+/* @media screen and (-webkit-min-device-pixel-ratio:0) {body {font-family: "Georgia", "Times New Roman", serif;}} */
 
 /* PARAGRAPHS AND LISTS */
  
