@@ -118,10 +118,13 @@ p img {border: 0; float:left; margin: 10px 20px 10px 0px;}
 
 #hover .poptext {visibility:hidden; border: none; float:left; margin:0; padding:0}
 
-@media not (orientation : landscape), (min-width:980px) {
+@media (min-width:980px) {
 #hover:hover .poptext {visibility:visible;}
 }
 
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+#hover:hover {text-decoration: none;}
+}
 
 @media (max-width: 769px) {
   .header {padding: 0;}
