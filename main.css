@@ -24,13 +24,12 @@ body {
 
 /* PARAGRAPHS AND LISTS */
  
-em {font-style: italic; font-weight: normal;}
 p, li { font-size: 1.5em; text-align: left; float: clear;}
 li ol li{font-size: 1.0em;}
 li ul li{font-size: 1.0em;}
 .statcounter {border: 0; }
 .large {font-size:2.1em; margin-top:0; padding-top:0;}
-.right {margin-left: 6%; margin-right: 2%; text-align:right; }
+.right {margin-left: 2%; margin-right: 6%; text-align:left; }
 
 /* HEADERS */
 
@@ -57,7 +56,7 @@ h1,h2,h3,h4 a:hover {
 /* IMAGES */
 
 p img {border: 0; float:left; margin: 10px 20px 10px 0px;}
-.caption {text-align: left; font-family: "Calendas Plus", "Crimson Text", "Hoefler Text", "Georgia", serif; font-style: italic; margin-bottom: 30px;}
+.caption {text-align: left; font-family: "Calendas Plus", "Crimson Text", "Hoefler Text", "Georgia", serif; font-style: italic; margin-bottom: 30px; width:100%;}
 .figure img {width: 100%; margin: 30px 0 0 0; border: 1px solid #000;}
 .splashthumb {width: 45%; margin: 10px 20px 10px 0px; float:left;}
 .splashthumb img {display: inline-block;  border: 1px solid #aaa; float:left; }
