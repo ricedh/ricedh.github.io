@@ -118,7 +118,7 @@ p img {border: 0; float:left; margin: 10px 20px 10px 0px;}
 
 #hover .poptext {visibility:hidden; border: none; float:left; margin:0; padding:0}
 
-@media (min-width:980px) {
+@media not (orientation:landscape); (min-width:980px) {
 #hover:hover .poptext {visibility:visible;}
 }
 
