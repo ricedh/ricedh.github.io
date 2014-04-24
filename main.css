@@ -24,6 +24,7 @@ body {
 
 /* PARAGRAPHS AND LISTS */
  
+em {font-style: italic; font-weight: normal;}
 p, li { font-size: 1.5em; text-align: left; float: clear;}
 li ol li{font-size: 1.0em;}
 li ul li{font-size: 1.0em;}
