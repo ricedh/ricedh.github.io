@@ -38,7 +38,7 @@ p, li { font-size: 1.5em; text-align: left; float: clear;}
 li ol li{font-size: 1.0em;}
 li ul li{font-size: 1.0em;}
 .large {font-size:2.1em; margin-top:0; padding-top:0;}
-.caption {color: #333; text-align: left; font-family: "Calendas Plus", "Crimson Text", "Hoefler Text", "Georgia", serif; font-style: italic; margin-bottom: 30px; width:100%;}
+.caption {color: #333; text-align: left; font-family: "Calendas Plus", "Crimson Text", "Hoefler Text", "Georgia", serif; font-style: italic; margin-bottom: 30px; padding-top:10px; width:100%; line-height:1.4em;}
 
 /* MISC DIVS AND CLASSES */
 
@@ -116,7 +116,7 @@ p img {border: 0; float:left; margin: 10px 20px 10px 0px;}
 .header {
 	width: 96%;
 	padding-top: 2em;
-	margin-bottom: 4em;
+	margin-bottom: 5em;
 	font-size: 1.2em; 
 }
 
@@ -141,6 +141,8 @@ p img {border: 0; float:left; margin: 10px 20px 10px 0px;}
 	#hover:hover .poptext {visibility:hidden;} /*iPad landscape*/
 }
 
+/* MEDIA QUERIES */
+
 /* LINKS */
 
 a:link, a:visited {
@@ -151,6 +153,22 @@ a:link, a:visited {
 a:hover {
  border-bottom: 1px solid; 
 }
+
+/* phone only stuff */
+@media (max-width: 769px) {
+  .header {padding: 0;}
+  .splashthumb {width: 96%;}
+  .splashthumb img {margin-right: 5%;}
+  .caption {float:left;}
+  .right {padding: 0; padding-top: 30px; margin: 0; float:left; text-align:left;}
+  .header h1 {font-size: 1.8em;}
+  #hover:hover .poptext {visibility:hidden;}
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	body {font-family: "Georgia", "Times New Roman", serif;}} /* better font for webkit */
+}
+
 /* CODE */
 
 pre, code {text-align: left; font-family:Monaco, Courier, monospace; font-size:13px; line-height:1.8; color:#586e75; padding: 2px;}
@@ -180,21 +198,4 @@ pre {
 // AlertTok
 .sourceCode .al { color: #CB4B16; font-weight: bold; }
 </style>
-
-/* MEDIA QUERIES */
-
-/* phone only stuff */
-@media (max-width: 769px) {
-  .header {padding: 0;}
-  .splashthumb {width: 96%;}
-  .splashthumb img {margin-right: 5%;}
-  .caption {float:left;}
-  .right {padding: 0; padding-top: 30px; margin: 0; float:left; text-align:left;}
-  .header h1 {font-size: 1.8em;}
-  #hover:hover .poptext {visibility:hidden;}
-}
-
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-	body {font-family: "Georgia", "Times New Roman", serif;}} /* better font for webkit */
-}
 
