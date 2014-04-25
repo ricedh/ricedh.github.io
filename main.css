@@ -17,11 +17,15 @@ body {
  text-align:center;
  line-height: 1.6;
  /* color:#073642; */
- font-size: 78%;
+ font-size: 75%;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	body {font-family: "Georgia", "Times New Roman", serif;}} /* better font for webkit */
 }
 
 article {
- padding-top: 7em;
+ padding-top: 8em;
  padding-bottom: 3em;
 }
 
@@ -47,7 +51,7 @@ div#dateline { text-align:left; color:#666; font-size: 1.5em; font-style: normal
 /* HEADERS */
 
 h1, h2, h3, h4, .footer h1 { text-align: left; font-family: 'Oswald', Helvetica, Arial, sans-serif; font-style: bold; }
-h1 { font-size: 3em; margin: 0 auto; }
+h1 { font-size: 4em; margin: 0 auto; }
 h2 { font-size: 2.4em; }
 h3 { font-size: 1.8em; }
 sup { line-height: 0; }
@@ -74,7 +78,6 @@ h1,h2,h3,h4 a:hover {
 
 p img {border: 0; float:left; margin: 10px 20px 10px 0px;}
 .figure img {width: 100%; margin: 30px 0 0 0; border: 1px solid #000;}
-.splash { display:inline-block;}
 .splashthumb {width: 45%; margin: 10px 20px 10px 0px; float:left;}
 .splashthumb img {display: inline-block;  border: 1px solid #aaa; float:left; }
 
@@ -86,6 +89,30 @@ p img {border: 0; float:left; margin: 10px 20px 10px 0px;}
 }
 
 /* NAVIGATION AND HEADER */
+
+.header {
+	width: 96%;
+	padding-top: 2em;
+	margin-bottom: 5em;
+	font-size: 1.2em; 
+}
+
+.nav img {
+	color: #666;
+    border: 1px solid #aaa;
+	}
+
+.header h1 {
+    display: block;
+	position: relative;
+	font-family: 'Oswald', Helvetica, Arial, sans-serif;
+	font-size: 3.6em;
+	color: #999;
+	padding-top: 30px;
+	padding-bottom: 10px;
+}
+
+#hover .poptext {visibility:hidden; border: none; float:left; margin:0; padding:0;}
 
 .nav img:hover {
     filter: none;
@@ -108,29 +135,8 @@ p img {border: 0; float:left; margin: 10px 20px 10px 0px;}
 	color: #333;
 	}
 
-.nav img {
-	color: #666;
-    border: 1px solid #aaa;
-	}
 
-.header {
-	width: 96%;
-	padding-top: 2em;
-	margin-bottom: 5em;
-	font-size: 1.2em; 
-}
-
-.header h1 {
-    display: block;
-	position: relative;
-	font-family: 'Oswald', Helvetica, Arial, sans-serif;
-	font-size: 3.6em;
-	color: #999;
-	padding-top: 30px;
-	padding-bottom: 10px;
-}
-
-#hover .poptext {visibility:hidden; border: none; float:left; margin:0; padding:0;}
+.splash { display:inline-block;}
 
 /* hover effects on desktop only */
 @media (min-width:980px) {
@@ -165,9 +171,6 @@ a:hover {
   #hover:hover .poptext {visibility:hidden;}
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-	body {font-family: "Georgia", "Times New Roman", serif;}} /* better font for webkit */
-}
 
 /* CODE */
 
