@@ -130,9 +130,16 @@ p img {border: 0; float:left; margin: 10px 20px 10px 0px;}
 	padding-bottom: 10px;
 }
 
-/* captions for nav icons */
+#hover .poptext {visibility:hidden; border: none; float:left; margin:0; padding:0;}
 
-.poptext {visibility:hidden; border: none; float:left; margin:0; padding:0;}
+/* hover effects on desktop only */
+@media (min-width:980px) {
+	#hover:hover .poptext {visibility:visible;}  /*desktop*/
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+	#hover:hover .poptext {visibility:hidden;} /*iPad landscape*/
+}
 
 /* LINKS */
 
@@ -191,11 +198,3 @@ pre {
 	body {font-family: "Georgia", "Times New Roman", serif;}} /* better font for webkit */
 }
 
-/* hover effects on desktop only */
-@media (min-width:980px) {
-	#hover:hover .poptext {visibility:visible;}  /*desktop*/
-}
-
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
-	#hover:hover .poptext {visibility:hidden;} /*iPad landscape*/
-}
