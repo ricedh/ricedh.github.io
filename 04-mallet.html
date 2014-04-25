@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--This page was produced by pandoc using a shell script. See http://wcm1.web.rice.edu/colophon.html for more information.-->
+  <meta name="author" content="Daniel Burns" />
+  <title>Grouping Documents with Topic Models | Digital History Methods</title>
+  <link rel="stylesheet" href="./bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="./main.css" type="text/css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700,700italic" rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+
+
+<body>
+
+<div class="container">
+<div class="row">
+<div class="span2">&nbsp;</div>
+<div class="span7">
+
+
+<div class="header">
+<h1><a href="index.html" style="color:#8CA454">DIGITAL HISTORY METHODS</a></h1>
+
+<div class="nav">
+<a href="index.html" id="hover"><img src="./digital-runawayad.png" class="gray" /><p class="caption poptext">Home</p></a>
+<a href="01-palladio.html" id="hover"><img src="./01-palladio.png" class="gray" /><p class="caption poptext">Mapping points</p></a>
+<a href="02-voyant.html" id="hover"><img src="./02-voyant.png" class="gray" /><p class="caption poptext">Text mining</p></a>
+<a href="03-ner.html" id="hover"><img src="./03-ner.png" class="gray" /><p class="caption poptext">Finding locations</p></a>
+<a href="04-mallet.html" id="hover"><img src="./04-mallet.png" /><p class="caption poptext">Topic modelling</p></a>
+<a href="05-twitterbot.html" id="hover"><img src="./05-twitterbot.png" class="gray" /><p class="caption poptext">Tweeting history</p></a>
+</div>
+</div>
+
+
+<article>
+
+
+<!--The title is produced by the pandoc template using the title block at the top of the markdown file-->
+<h1>Grouping Documents with Topic Models</h1>
+<!--The author is produced by the pandoc template using the title block at the top of the markdown file-->
+<div id="dateline">
+By Daniel Burns
+</div>
+
+<!--Begin content of the main markdown file for this page, which is processed by pandoc and output as html.-->
+
+
+<p>Screen shot of MALLET topics.</p>
+<h1 id="rationale">Rationale</h1>
+<p>Why we wanted to separate regular ads from jailor’s notices programmatically.</p>
+<p>Through our close readings of our ad corpuses, we quickly realized that a significant portion of the ads present were not in fact ads posted by owners searching for runaways, but of jailers who had captive runaways and were searching for the owners. While most of the language and intent in these ads were similar, there were enough differences to encourage sorting them out from the other ads. From a geographic standpoint, these ads were the end-points of slaves’ runaway journeys, and can be plotted differently than runaway ads, which serve as a starting point. From a data analysis perspective, they do not include categories of information like reward value or means of escape, and would interfere with the collection of consistent data from ads on those categories. Finally, the jailors’ ads also served as an independent source of information, since sorting them out would lead to new insights on how laws on slave capture and return were put into effect, or how they varied in terms of language from ads posted by slave owners. While these ads individually can be identified and sorted out of a corpus, both the number of runaway ads being dealt with and the number of jailors’ ads prohibited this due to time constraints. However, differences in language and terminology between the types of ads made it possible to train a computer to differentiate between them based on these variables.</p>
+<h1 id="methodology">Methodology</h1>
+<p>Our method for using the MALLET topic modeling package to separate ads.</p>
+<p>Our first step was to generate three topic models, one for each of the three states for which we had advertisements. To do this we downloaded and ran <a href="http://mallet.cs.umass.edu">MALLET</a>. Because <a href="index.html#our-data">our data</a> were already stored in separate text files, one for each ad, we were able to train topics on our ads using MALLET’s command-line options and a <a href="http://programminghistorian.org/lessons/topic-modeling-and-mallet">tutorial on topic modeling at the Programming Historian</a>.</p>
+<p>The methods followed were similar to those in the tutorial above. The directory was imported from the folder of ads of the respective state. That directory was then imported into MALLET, which was run to export a text file containing 10 topics from the entire ad directory. The resulting text file for Arkansas is posted below.</p>
+<pre><code>[0  5   negro county arkansas man jail living stout miles mississippi st runaway territory august twenty francis union crittenden post justice 
+1   5   years complexion dark age color aged copper ranaway woman henry ar hempstead washington phillips height wife undersigned george men 
+2   5   black white negro coat hat pantaloons left shirt blue pair cotton pants cloth jeans brown coarse wool worn colored 
+3   5   state rock made river good delivered place countenance free secured tennessee face reasonable red purchased brought boat sold time 
+4   5   years negroes mulatto left large supposed clothing heavy built light hair sic girl bright marks make eyes lafayette men 
+5   5   sheriff committed pay belongs runaway property owner charges law forward prove day slave dealt jailor requested custody county pulaski 
+6   5   boy negro jail county scar john weighs feet sic pounds lbs inst jefferson thomas johnson side saline la weigh 
+7   5   reward named dollars subscriber give ran apprehension delivery person fifty paid twenty hundred plantation teeth stolen night expenses residence 
+8   5   high inches feet age years mr yellow william james inst black back miller head scars slender months lost jim 
+9   5   feet man black spoken inches small high fellow ten thirty speaks quick information nation tolerably set memphis sam securing ]</code></pre>
+<p>MALLET also outputs a spreadsheet showing the proportion of each document that is drawn from each of the topics; on each row, the filename of the document is followed by the number of the most prominent topic, followed by the proportion of the document associated with that topic. Other topics and proportions follow on the same row in decreasing order of weight.</p>
+<p>In order to separate our ads, we first identified two topics in the keys file that seemed to associated, respectively, with runaway ads and captured notices. For example, in the topic-keys listed above, topic 7 looks more like a runaway ad because of words like reward, subscriber, and delivery, while topic 5 looks more like a jailors’ notice because of their frequent terminology like sheriff, committed, law, and jailor.</p>
+<p>Thus, we hypothesized that documents in which topic 7 was more prominent than topic 5 were more likely to be runaway ads, while documents in which topic 5 was more prominent than topic 7 were likely to be captured notices. A <a href="https://github.com/ricedh/adparsers/blob/master/divide_docs.py">Python script</a>, <code>divide_docs.py</code>, enabled us to test this assumption. The script analyzes the tab-delimited file output by MALLET and separates the files in each row into two directories, based on whether topic X or topic Y appears first in that file’s row. We were then able to perform a close reading on some of the separated files to see whether we had accurately separated ads for captured slaves from those that had not been captured.</p>
+<h1 id="conclusions">Conclusions</h1>
+<p>Findings, questions, limitations</p>
+<p>One concern with the use of topic modeling was the overall accuracy of the computer’s ability to discriminate between similar ads. Through analysis of the topic models for various states, it was found to have a high degree of reliability. Out of the 398 Texas Gazette ads, the topic model sorting method split the ads into 195 jailors’ ads and 203 runaway ads. Out of all of these, there were 3 incorrectly identified ads in the jailors’ ads, and 1 in the runaway ads. In this set, there was a 99% accuracy for differentiating between ads. The Arkansas data set provided similar results. Out of 199 jailors’ notices, 9 were found in error; out of 289 runaway ads, only 6 were in error. This gave the second data set an overall accuracy of 97%. With these results, it is possible to trust the results from the topic models to within a reasonable margin of error.</p>
+<p>However, there are limitations to this approach. The first issue is the fact that there are always exceptions in the content of the material. One ad discovered in the Texas Gazette text was the report of a runaway slave found dead. This was identified by the topic model as strongly related to the runaway topic, even though the ad itself was a report of death. In the Arkansas ads, another ad was the report of a captured runaway who had escaped and run from the jailor. While this ad fell into both categories, the system used would only sort the ad into one set, thus leaving it out of the other data set. Another limitation is the drop in accuracy as the number of topics allowed in the original program are increased. For the Arkansas ads, when searched with 15 topics rather than the original 10, the accuracy dropped significantly. In a set of 278 ads, 45 were incorrectly identified, dropping the accuracy to 84%.</p>
+<p>(I can potentially put charts of the number of ads over time in here, but I’ve graphed them all out, and there aren’t a lot of obvious conclusions to draw from them. Would we rather include more data, or stick to the main subject?)</p>
+
+<!--End content from the main markdown file for this page.-->
+
+</article>
+
+<p class="revision"><a href="https://github.com/ricedh/drafts/commits/master/04-mallet.md" title="version history on GitHub">revision history for this page </a></p>
+
+<footer>
+
+
+<!--Begin contents of _footer.html which are inserted using the include-after-body option in pandoc.-->
+
+<!--Footer-->
+
+<div class="splashthumb">
+<a href="index.html"><img src="./digital-runawayad.png" /></a>
+<p class="caption">Home</p>
+</div>
+<div class="splashthumb">
+<a href="01-palladio.html"><img src="./01-palladio.png" /></a>
+<p class="caption">Mapping points</p>
+</div>
+<div class="splashthumb">
+<a href="02-voyant.html"><img src="./02-voyant.png" /></a>
+<p class="caption">Text mining</p>
+</div>
+<div class="splashthumb">
+<a href="03-ner.html"><img src="./03-ner.png"   /></a>
+<p class="caption">Finding locations</p>
+</div>
+<div class="splashthumb">
+<a href="04-mallet.html"><img src="./04-mallet.png"   /></a></p>
+<p class="caption">Topic modelling</p>
+</div>
+<div class="splashthumb">
+<a href="05-twitterbot.html"><img src="./05-twitterbot.png"   /></a>
+<p class="caption">Tweeting history</p>
+</div>
+
+<!--Statcounter-->
+
+<script type="text/javascript">
+var sc_project=2874620; 
+var sc_invisible=0; 
+var sc_partition=29; 
+var sc_security="cc89e61f"; 
+</script>
+
+<script type="text/javascript" src="http://www.statcounter.com/counter/counter_xhtml.js"></script>
+
+<noscript><div class="statcounter"><a class="statcounter" href="http://www.statcounter.com/"><img class="statcounter" src="http://c30.statcounter.com/2874620/0/cc89e61f/0/" alt="invisible hit counter" /></a></div></noscript>
+
+<!--End contents of _footer.html which are inserted using the include-after-body option in pandoc.-->
+
+</footer>
+
+<a rel="license" style="clear:both; display:block; padding-top:2em;" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><br />This work by <a xmlns:cc="http://creativecommons.org/ns#" href="http://ricedh.github.io" property="cc:attributionName" rel="cc:attributionURL">http://ricedh.github.io</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="http://github.com/ricedh/drafts" rel="cc:morePermissions">http://github.com/ricedh/drafts</a>.
+
+</div>
+
+<div class="span3">&nbsp;</div>
+
+</div>
+</div>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</body>
+</html>

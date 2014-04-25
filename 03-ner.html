@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--This page was produced by pandoc using a shell script. See http://wcm1.web.rice.edu/colophon.html for more information.-->
+  <meta name="author" content="Aaron Braunstein, Clare Jensen, and Kaitlyn Sisk" />
+  <title>Tagging Locations with NER | Digital History Methods</title>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="./bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="./main.css" type="text/css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Crimson+Text:400,400italic,700,700italic" rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+
+
+<body>
+
+<div class="container">
+<div class="row">
+<div class="span2">&nbsp;</div>
+<div class="span7">
+
+
+<div class="header">
+<h1><a href="index.html" style="color:#E57573">DIGITAL HISTORY METHODS</a></h1>
+
+<div class="nav">
+<a href="index.html" id="hover"><img src="./digital-runawayad.png" class="gray" /><p class="caption poptext">Home</p></a>
+<a href="01-palladio.html" id="hover"><img src="./01-palladio.png" class="gray" /><p class="caption poptext">Mapping points</p></a>
+<a href="02-voyant.html" id="hover"><img src="./02-voyant.png" class="gray" /><p class="caption poptext">Text mining</p></a>
+<a href="03-ner.html" id="hover"><img src="./03-ner.png" /><p class="caption poptext">Finding locations</p></a>
+<a href="04-mallet.html" id="hover"><img src="./04-mallet.png" class="gray" /><p class="caption poptext">Topic modelling</p></a>
+<a href="05-twitterbot.html" id="hover"><img src="./05-twitterbot.png" class="gray" /><p class="caption poptext">Tweeting history</p></a>
+</div>
+</div>
+
+
+<article>
+
+
+<!--The title is produced by the pandoc template using the title block at the top of the markdown file-->
+<h1>Tagging Locations with NER</h1>
+<!--The author is produced by the pandoc template using the title block at the top of the markdown file-->
+<div id="dateline">
+By Aaron Braunstein, Clare Jensen, and Kaitlyn Sisk
+</div>
+
+<!--Begin content of the main markdown file for this page, which is processed by pandoc and output as html.-->
+
+
+<div class="figure">
+<img src="https://cloud.githubusercontent.com/assets/6469656/2755492/929e39b4-c969-11e3-8ba7-47b3d265dd37.png" alt="NER script" /><p class="caption">NER script</p>
+</div>
+<h1 id="rationale">Rationale</h1>
+<p>A close reading of the runaway ads from our corpora suggested that Texas ads were more self-referential than those of Arkansas and Mississippi, which seemed to include a more diverse interaction with states outside of themselves. In addition, mentions of Mexico seemed to appear exclusively in Texas ads. However, without digital tools to sift through the information, and with over 1000 advertisements in the Mississippi corpora alone, analysis and trends are challenging to prove through close reading. In order to test these hypotheses, then, we needed comprehensive lists of state mentions in each of the three runaway ad corpora (Arkansas, Mississippi, and Texas). These locations lists required a method of large data collection and organization, since the number of advertisements prohibited the possibility of manual labeling.</p>
+<p>Extracting geographic place names from the runaway advertisements through NER gave us the ability to process the large amounts of data. The script was able to collect a relatively comprehensive list of all location mentions in the corpora. The possibilites of NER extend beyond the geographic as well, through NER’s ability to extract names of people and organizations. Without the computer coding, we would have been unable to collect a relatively complete data set of locations, given the enormous size of our sources and the manual labor necessary for the task. Through NER, however, we were able to achieve an approximation, a broad overview of the number trends in state references for Arkansas, Mississippi, and Texas.</p>
+<h1 id="methodology">Methodology</h1>
+<p>To compute for each state in the U.S. (and Mexico) the number of ads in a corpus that referenced that state, we decided to utilize a combination of named entity recognition, via <a href="http://nlp.stanford.edu/software/CRF-NER.shtml">Stanford NER</a>, and address lookup, via the <a href="https://github.com/geopy/geopy">geopy Python library</a> using the GoogleV3 geocoder. Since this article is about named entity recognition, this article will focus on the first part, in the context of locations identification.</p>
+<h3 id="named-entity-recognition">Named Entity Recognition</h3>
+<p>Wikipedia defines named entity recognition succintly: &gt; Given a stream of text, determine which items in the text map to proper names, such as people or places, and what the type of each such name is (e.g. person, location, organization).</p>
+<p>Stanford’s implementation of NER uses a Conditional Random Field (CRF) in order to label a string of text with entities. If you have taken statistics courses, you might be familiar with Hidden Markov Models, which are widely used in the realm of natural language processing for tasks like speech recognition and identifying part of speech of words in a sentence. CRF is very similar to that: the classifier used by NER is trained on a large data set containing a sequence of words in sentences, where each word is annotated with an entity category, if there is one. Then, using sliding windows that take into account words that come before and words that come after the tokens (words) in question, the program maximizes the conditional probability of computed labels (unobserved data) given the tokens (observed data) and the classifier (training data set). Because it is probabilistic, there will always be errors, both false positives and false negatives.</p>
+<p>Our goal was to find all location names. We used the built-in classifier, english.conll.4class, but if you want to train your own classifier, you can of course do that. The Wilkens Group at the University of Notre Dame has a good <a href="https://blogs.nd.edu/wilkens-group/2013/10/15/training-the-stanford-ner-classifier-to-study-nineteenth-century-american-fiction/">tutorial on training your own classifier</a> if you are interested. They used NER on a 19th century American Fiction data set, and their tutorial outlines the advantages of training your own classifier.</p>
+<p>As mentioned, we chose Stanford’s Named Entity Recognition software to use to identify locations in our corpora of runaway slave ads. We chose to write our entity tagger script in Python, and fortunately there is an interface called <a href="https://github.com/dat/pyner">Pyner</a> that hooks calls to the NER program.</p>
+<p>Once we download NER and cd’d to the directory, we started it with the following UNIX command:</p>
+<pre><code>java -mx1000m -cp stanford-ner.jar edu.stanford.nlp.ie.NERServer -loadClassifier classifiers/english.conll.4class.distsim.crf.ser.gz -port 8080 -outputFormat inlineXML</code></pre>
+<p>Then in Python, after installing Pyner, we initialized the tagger with the following command:</p>
+<pre class="sourceCode python"><code class="sourceCode python">tagger = ner.SocketNER(host=<span class="st">&#39;localhost&#39;</span>, port=<span class="dv">8080</span>)</code></pre>
+<p>Next, we called the get_entities method of the tagger, iteratively using each runaway slave ad in the corpus (a directory name) as the parameter:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">for</span> filename in os.listdir(directory):
+    <span class="kw">if</span> filename.endswith(<span class="st">&quot;.txt&quot;</span>):
+        <span class="kw">with</span> <span class="dt">open</span>(os.path.join(directory, filename), <span class="st">&#39;r&#39;</span>) <span class="ch">as</span> f:
+            text = f.read().decode(<span class="st">&quot;utf8&quot;</span>)
+            entities = tagger.get_entities(text)</code></pre>
+<p>We checked if the LOCATION key existed in the entities dictionary (it also tags person, organization, etc), and if so, stored the LOCATION values in a locations dictionary that maps each filename to the detected locations:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">if</span> <span class="st">&#39;LOCATION&#39;</span> in entities:
+    locations[filename] = entities[<span class="st">&#39;LOCATION&#39;</span>]</code></pre>
+<p>One problem that came up was that location tokens were as small as possible–usually at the word level. That means, if the text contained the phrase “Springfield, Virginia”, the locations list would contain usually separate entries for “Springfield” and “Virginia.” That behavior is not ideal since it can lead to ambiguity in the location names, and excess results. For example, there are dozens of towns named Springfield in the U.S. More on the ambiguity problem in a bit, but for now, our solution was a function that merges detected locations if they are situated within a certain threshold apart in the original text. We chose a maximum gap length of 2 between the tagged locations for them to be classified as an expression.</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">def</span> merge_locations(locs, text):
+    <span class="co">&quot;&quot;&quot;Merges all words in locs list that are spaced at most two characters</span>
+<span class="co">    apart in text. (i.e. &quot;, &quot;). Assumes locs are in order in text.</span>
+<span class="co">    &quot;&quot;&quot;</span>
+    idx = <span class="dv">0</span>
+    last_idx = <span class="dt">len</span>(locs) - <span class="dv">1</span>
+    merged = []
+    <span class="kw">while</span> idx &lt;= last_idx:
+        loc = locs[idx]
+        <span class="kw">while</span> not idx is last_idx:
+            <span class="co"># &quot;Trims&quot; the text after looking at each location to prevent</span>
+            <span class="co"># indexing the wrong occurence of the location word if it</span>
+            <span class="co"># occurs multiple times in the text.</span>
+            gap, text, merge = gap_length(locs[idx], locs[idx<span class="dv">+1</span>], text)
+            <span class="kw">if</span> gap &lt;= <span class="dv">2</span>:
+                loc += merge
+                idx += <span class="dv">1</span>
+            <span class="kw">else</span>:
+                <span class="kw">break</span>
+        merged.append(loc)
+        idx += <span class="dv">1</span>
+    <span class="kw">return</span> merged
+    
+<span class="kw">def</span> gap_length(word1, word2, text):
+    <span class="co">&quot;&quot;&quot;Returns the number of characters after the end of word1 and</span>
+<span class="co">    before the start of word2 in text. Also returns the &quot;trimmed&quot;</span>
+<span class="co">    text with whitespace through word1&#39;s position and the</span>
+<span class="co">    merged words expression.</span>
+<span class="co">    &quot;&quot;&quot;</span>
+    pos1, pos2 = text.index(word1), text.index(word2)
+    pos1_e, pos2_e = pos1 + <span class="dt">len</span>(word1), pos2 + <span class="dt">len</span>(word2)
+    gap = pos2 - pos1_e
+    
+    <span class="co"># Substitute characters already looked at with whitespace</span>
+    edited_text = <span class="dt">chr</span>(<span class="dv">0</span>)*pos1_e + text[pos1_e:]
+    inter_text = text[pos1_e:pos2_e]
+    <span class="kw">return</span> gap, edited_text, inter_text</code></pre>
+<p>Finally, we dumped the resulting filename -&gt; locations dictionary as a JSON file:</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="kw">with</span> <span class="dt">open</span>(directory + <span class="st">&#39;.json&#39;</span>, <span class="st">&#39;w&#39;</span>) <span class="ch">as</span> f:
+    f.write(json.dumps(
+                    locations,
+                    indent=<span class="dv">4</span>,
+                    separators=(<span class="st">&#39;,&#39;</span>, <span class="st">&#39;: &#39;</span>)
+                    )
+                )</code></pre>
+<p>If you would like to view the entire script or use it in your project, please visit <a href="https://gist.github.com/br0nstein/11288492">this gist</a>. Note the script also does some preprocessing of the text specific to our data set to aid in the location detection.</p>
+<h3 id="application">Application</h3>
+<p>Going back to our original problem of counting the number of ads that referenced each state for each of our Arkansas, Mississippi, and Texas corpora, we can use the above technique to help compute that.</p>
+<p>The algorithm:</p>
+<div class="figure">
+<img src="https://cloud.githubusercontent.com/assets/6469656/2800861/3f34bee2-cc7a-11e3-983f-0dd6e915d751.png" alt="CountStateReferences" /><p class="caption">CountStateReferences</p>
+</div>
+<p>The above algorithm makes a few assumptions about the model governing the types of locations that appear in the text. Notice how first, we try to directly match the location to a known list of state names (e.g. “Arkansas”) and abbreviations (e.g. “AR” and “Ark.”). If it fails, we next try to look up an address for the location. We implemented this using the geopy library with the GoogleV3 geocoder. The <a href="https://github.com/geopy/geopy">github for the project</a> contains some examples of doing geolocating and address lookup similar to this. Because NER often produces false positives–for example in our data, subscriber names often appeared in all caps and were inaccurately tagged as locations–we check that the result is an address in the region. We chose to make the assumption that true locations always either: * Include a state name in the merged location entity, or * Are a reference to a local or nearby county or city</p>
+<p>This helps reduce the number of false positives (e.g. names of people) that are considered as state references, since Google Maps is very good at finding locations for partial matches, and this is very bad for us. The probability that the address it chooses to return for non-location terms is in the nearby area (for example, Arkansas, Mississippi, Texas, Georgia, Tennessee, Louisiana, and Missouri) is low but of course non-negligible.</p>
+<p>Because of time constraints, we didn’t implement that exact algorithm. We started by just directly using whatever result the geocoder returned as the state for each location, but found that the number of false matches was enormous due to ambiguity in the data and noise. We ended up just implementing the “direct hit” part of the algorithm, under the assumption that this would underestimate the true state reference numbers but not bias any particular states, or bordering states vs the local state within a corpus. This means the counts we used to produce the maps are only location names that contain the state name or abbreviation.</p>
+<p>Finally, with the state reference numbers in hand, we were able to produce some pretty Google Fusion tables displaying our results. See the next section for that.</p>
+<h1 id="conclusions">Conclusions</h1>
+<p><em>Findings, questions, limitations.</em></p>
+<p>There are some limitations of NER that should be kept in mind. For one, it can sometimes tag items incorrectly. For example, we found that names of slaves or slave owners were sometimes tagged as locations, and places such as rivers could be tagged innacurately as the location “Colorado” as opposed to being interpreted as “Colorado River.” These outliers can be cleaned up manually, but with a large corpus such as ours, it can be very time consuming. Even a well-written NER script will still make some mistakes, so cleaning up the data is a necessary step when using NER. That said, due to the nature of our project and the focus on the tool rather than the conclusions, we did not manually clean up our tagged locations but only the final state counts (false positives “Colorado” and “Washington”) and designed the script to address these issues as intelligently as possible.</p>
+<p>A limitation of the extension of NER in computing state counts is ambiguous place names, as previously mentioned with the Springfield example. Not to mention, state counts are affected by noise in the tagged locations data. To address this, in addition to the algorithm’s design, we could reduce the noise at the locations tagging level by being more strict about tagged location matches. Right now, we only ran the data with one classifier, but to reduce the number of false positives (at the risk of reducing true positives), we could run the data with multiple classifiers, and only take as true the tagged locations that were matched by every classifier. If that produces too little data, we could set a threshold such as 2/3 for the number of classifiers that have to match a given token.</p>
+<h3 id="using-ner-with-google-fusion-tables">Using NER with Google Fusion Tables</h3>
+<p>Using the NER script, we were able to analyze our hypotheses that Texas was more self-referential and the only state to mention Mexico by getting a count of how many times a state was mentioned in the Mississippi, Arkansas, and Texas newspapers. One way to visualize the results of this data is through Google Fusion Tables. (<a href="http://commons.trincoll.edu/jackdougherty/how-to/gft-thematic-maps/">This tutorial</a> is helpful for learning how to use Google Fusion Tables). By shading each mentioned state with a color intensity based on its percentage of total references, we were quickly able to illustrate the results of the NER counts.</p>
+<p><em>maps will be embedded on actual site (hopefully)</em><br /><a href="https://www.google.com/fusiontables/embedviz?q=select+col2%3E%3E1+from+1eqWyjk4LrP4cnkB2-O9YD-FZKIfg8KE2f2a2s2ST&amp;viz=MAP&amp;h=false&amp;lat=33.704936791856504&amp;lng=-93.08194843750005&amp;t=1&amp;z=4&amp;l=col2%3E%3E1&amp;y=2&amp;tmplt=2&amp;hml=KML">Texas map</a><br /><a href="https://www.google.com/fusiontables/embedviz?q=select+col2%3E%3E1+from+1zqezAZk0FRZnfDEraQRD1dcl471zN8VzsI6Up-L5&amp;viz=MAP&amp;h=false&amp;lat=34.36045909004289&amp;lng=-94.00480000000005&amp;t=1&amp;z=5&amp;l=col2%3E%3E1&amp;y=2&amp;tmplt=2&amp;hml=KML">Mississippi map</a><br /><a href="https://www.google.com/fusiontables/embedviz?q=select+col2%3E%3E1+from+1WSnfP2-F62Do3GsH-_Cey1qIzP94Ox-0n-5Hzl93&amp;viz=MAP&amp;h=false&amp;lat=33.99690524070303&amp;lng=-92.99405781250005&amp;t=1&amp;z=4&amp;l=col2%3E%3E1&amp;y=2&amp;tmplt=2&amp;hml=KML">Arkansas map</a></p>
+<p>When viewed in conjunction, the three maps show that Texas runaway slave advertisements were indeed slightly more self-referential than advertisements in Arkansas and Mississippi, which confirms our hypothesis. This could be due to the fact that Texas was a border land, so many runaway slaves were likely heading towards more remote areas, such as western Texas and Mexico, and not towards the rest of the Southern states. Texas is additionally the only state of the three to mention Mexico, but it does so fewer times than we were expecting. Arkansas is the least self-referential, which supports our earlier hypothesis outlined in the Palladio section that Arkansas was somewhat of a border land as well. The fact that about half of the total state references in the corpus are locations outside of Arkansas could be because Arkansas had more jailer’s notices that advertised runaway slaves from other states.</p>
+<p>Google Fusion Tables is still an experimental tool and had a few limitations for us during this project. Because our data was not distributed evenly across percentage groups, we could not utilize the gradient tool to separate the colors and data nicely. Instead, we divided the number range into buckets to get a better sense of where the data was most heavily weighted. However, this makes the intervals appear random at first glance, and the colors are difficult to tell apart.</p>
+<p>Another technical limitation of Google Fusion Tables to keep in mind is that it only allows viewers to see what the author has published, rather than giving them the ability to experiment with the gradient and bucket tools for themselves. Our Google Fusion Tables have data columns for total number of counts, percentage including the state of the newspaper corpus, and percentage without the counts of the main state, yet we published the map that colors states based on the percentage including the main state. Giving the viewer the ability to play with the different features themselves could allow the viewer to make their own conclusions about what the data shows.</p>
+<p>These Google Fusion Tables can continue to improve as the results from the NER become cleaner and more precise. Additional research could focus just on jailer’s notices (with help from MALLET). Since regular runaway slave advertisements mostly only mention the owner’s location and a projected location, looking at jailer’s notices would eliminate many of the self-referential advertisements. It also changes the lens through which we look at the data, as the out of state references would have been provided by the slaves rather than the slave owners. In addition, the Google Fusion Tables that we made could be enhanced by using Javascript to change the map shown depending on which state the user’s mouse is hovering over. This would enable the viewer to better see the differences between each state.</p>
+
+<!--End content from the main markdown file for this page.-->
+
+</article>
+
+<p class="revision"><a href="https://github.com/ricedh/drafts/commits/master/03-ner.md" title="version history on GitHub">revision history for this page </a></p>
+
+<footer>
+
+
+<!--Begin contents of _footer.html which are inserted using the include-after-body option in pandoc.-->
+
+<!--Footer-->
+
+<div class="splashthumb">
+<a href="index.html"><img src="./digital-runawayad.png" /></a>
+<p class="caption">Home</p>
+</div>
+<div class="splashthumb">
+<a href="01-palladio.html"><img src="./01-palladio.png" /></a>
+<p class="caption">Mapping points</p>
+</div>
+<div class="splashthumb">
+<a href="02-voyant.html"><img src="./02-voyant.png" /></a>
+<p class="caption">Text mining</p>
+</div>
+<div class="splashthumb">
+<a href="03-ner.html"><img src="./03-ner.png"   /></a>
+<p class="caption">Finding locations</p>
+</div>
+<div class="splashthumb">
+<a href="04-mallet.html"><img src="./04-mallet.png"   /></a></p>
+<p class="caption">Topic modelling</p>
+</div>
+<div class="splashthumb">
+<a href="05-twitterbot.html"><img src="./05-twitterbot.png"   /></a>
+<p class="caption">Tweeting history</p>
+</div>
+
+<!--Statcounter-->
+
+<script type="text/javascript">
+var sc_project=2874620; 
+var sc_invisible=0; 
+var sc_partition=29; 
+var sc_security="cc89e61f"; 
+</script>
+
+<script type="text/javascript" src="http://www.statcounter.com/counter/counter_xhtml.js"></script>
+
+<noscript><div class="statcounter"><a class="statcounter" href="http://www.statcounter.com/"><img class="statcounter" src="http://c30.statcounter.com/2874620/0/cc89e61f/0/" alt="invisible hit counter" /></a></div></noscript>
+
+<!--End contents of _footer.html which are inserted using the include-after-body option in pandoc.-->
+
+</footer>
+
+<a rel="license" style="clear:both; display:block; padding-top:2em;" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><br />This work by <a xmlns:cc="http://creativecommons.org/ns#" href="http://ricedh.github.io" property="cc:attributionName" rel="cc:attributionURL">http://ricedh.github.io</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="http://github.com/ricedh/drafts" rel="cc:morePermissions">http://github.com/ricedh/drafts</a>.
+
+</div>
+
+<div class="span3">&nbsp;</div>
+
+</div>
+</div>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</body>
+</html>

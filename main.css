@@ -27,13 +27,18 @@ body {
 article {
  padding-top: 7em;
  padding-bottom: 3em;
+ margin-bottom: 3em;
 }
 
 footer {
  font-size: 0.85em;
- padding: 1em;
+ padding: 2em;
  padding-left: 2em;
- background-color: #eee8d5;
+ margin-top: 4em;
+}
+
+footer .splashthumb {
+ width:30%;
 }
 
 /* PARAGRAPHS AND LISTS */
@@ -47,6 +52,16 @@ li ul li{font-size: 1.0em;}
 /* MISC DIVS AND CLASSES */
 
 div#dateline { text-align:left; color:#666; font-size: 1.5em; font-style: normal; margin-bottom: 1.8em;}
+
+
+.statcounter {border: 0px;}
+
+.nobullet{
+  clear: both;
+  list-style-type: none;
+  padding-left: 0;
+  float: left;
+}
 
 /* HEADERS */
 
@@ -171,6 +186,9 @@ a:hover {
   #hover:hover .poptext {visibility:hidden;}
 }
 
+.revision {display: inline-block; float: center; text-align:center; font-size: 1.5em; font-style: normal; margin-bottom: 1.8em; padding-top: 2.8em; color:#aaa; font-family: 'Monaco', 'Consolas', 'Courier', monospace; font-size:13px;}
+
+.revision a:hover {border-bottom: 0; color: #aaa; color: #3366BB;}
 
 /* CODE */
 
