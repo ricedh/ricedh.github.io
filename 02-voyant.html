@@ -36,12 +36,11 @@
 <a href="05-twitterbot.html" id="hover"><img src="./05-twitterbot.png" class="gray" /><p class="caption poptext">Tweeting history</p></a>
 </div>
 </div>
-
-
 <article>
 
 
 <!--The title is produced by the pandoc template using the title block at the top of the markdown file-->
+
 <h1>Using Voyant for Text Analysis</h1>
 <!--The author is produced by the pandoc template using the title block at the top of the markdown file-->
 <div id="dateline">
@@ -51,7 +50,6 @@ By Alyssa Anderson
 <!--Begin content of the main markdown file for this page, which is processed by pandoc and output as html.-->
 
 
-<p>Open with an embedded image from Voyant, and a <a href="http://voyant-tools.org/?corpus=1398028124350.4052&amp;stopList=stop.en.taporware.txt">link to the full corpus of Texas ads</a>.</p>
 <iframe width="0" height="0" src="http://voyant-tools.org/?corpus=1398028124350.4052&stopList=stop.en.taporware.txt"></iframe>
 
 <h1 id="rationale">Rationale</h1>
@@ -81,22 +79,13 @@ By Alyssa Anderson
 <h1 id="conclusions">Conclusions</h1>
 <p>Our primary findings in Voyant focused heavily on the use of racial and ethnic descriptors in the ads. In most runaway ads, the subscriber tends to give some description of the runaway’s complexion or racial status. We were interested in tracking variations in these terms across states.</p>
 <p>This graph from shows trends for the word “African” across the entire collection of Texas ads from 1836 to 1860. Over time, occurrences of this word goes down until eventually disappearing. As a class, we speculated about potentially finding evidence of the Atlantic slave trade continuing in the early years of Texas. These trends would suggest that to be the case. Although the United States criminalized international slave trade in 1807, as an independent nation from 1836 to 1846, Texas was not subject to these restrictions. The heaviest use of the word African occurs from the years 1836 (the first year we have data for) to 1838, and then sporadically after that. The latest mention of an African runaway in Texas occurs in 1857, for a slave 38 years old. Presumably over time, the growing international abolition movement and the eventual annexation of Texas to the United States contributed to the disappearance of notices for runaway Africans.</p>
-<div class="figure">
-<img src="https://cloud.githubusercontent.com/assets/6466141/2796762/75804006-cc17-11e3-8170-4af6666883ec.png" alt="tx-african-screenshot" /><p class="caption">tx-african-screenshot</p>
-</div>
 <iframe width="395" height="560" src="http://voyant-tools.org/tool/TypeFrequenciesChart/?corpus=1398028860042.2957&docIdType=d1397967000233.76be2c7d-45ec-314d-199d-d2220e9971e2%3Aafrican&stopList=stop.en.taporware.txt&mode=document&limit=2&freqsMode=raw"></iframe>
 
 <p>Additionally, “African” appears most frequently in Texas compared to the other states, and slightly more frequently in Mississippi than in Arkansas. This confirms class suspicions from close-reading that Texas had higher rates of Africans than the other states. We also speculated that Mississippi and Texas, with access to ocean ports, have higher rates of African slaves than landlocked Arkansas due to easier shipping trade routes.</p>
-<div class="figure">
-<img src="https://cloud.githubusercontent.com/assets/6466141/2796767/87ddfbc6-cc17-11e3-9d93-c56157d33125.png" alt="all-states-african-screenshot" /><p class="caption">all-states-african-screenshot</p>
-</div>
 <iframe width="395" height="560" src="http://voyant-tools.org/tool/TypeFrequenciesChart/?corpus=1398028124350.4052&stopList=stop.en.taporware.txt&type=african&mode=corpus"></iframe>
 
 <p>Our explorations of the word “African” in Voyant exemplify the ways that digital text mining tools can not only help confirm hypotheses from close-reading but also raise previously unthought of questions for further close-reading. The graph peak of the early years encouraged us to read more closely into the history of international slave trade and abolitionism, and how these relate to the Texas timeline and position as an independent nation.</p>
 <p>We also used Voyant to track variations in language descriptors by state. We found that the French word Griff(e) occurred much more frequently in Texas, followed by Mississippi, and not at all in Arkansas. (Just as a side note, this sometimes occurring “e” highlights the importance of checking for variations or abnormalities in spelling when conducting digital research.) Tracking the word “Griffe” alongside “Mulatto” reveals that while Texas and Mississippi have higher use of the word Griff(e), Arkansas has higher use of the word Mulatto. Additionally, Texas and Mississippi – the states where the French word “Griff” is used – also have higher occurrences of the word “French” suggesting a more significant presence of French people or the French language in these states. In Arkansas subscribers were more likely to prefer the term Mulatto to refer to someone of part white, part black ancestry, whereas in Texas and Mississippi they used both Mulatto and Griff(e).</p>
-<div class="figure">
-<img src="https://cloud.githubusercontent.com/assets/6466141/2796768/8de69852-cc17-11e3-9500-086826a53d52.png" alt="all-comparison-descriptors" /><p class="caption">all-comparison-descriptors</p>
-</div>
 <iframe width="395" height="560" src="http://voyant-tools.org/tool/TypeFrequenciesChart/?corpus=1398028124350.4052&stopList=stop.en.taporware.txt&type=mulatto&type=french&type=griff&type=griffe&mode=corpus"></iframe>
 
 <p>Overall, Voyant has been a very useful tool for our historical project on Texas runaway ads. The majority of Voyant’s limitations are due to the fact that the software is still in beta mode. The platform can sometimes be a bit jerky, slow to load, or sometimes gets stuck loading. Scrolling through the tools is not always a smooth, straightforward process. Unfortunately, while the favorites feature is useful, this list can’t be saved for future use when generating a skin URL. Despite these hiccups, we recommend the tool for historians hoping to take a “distant reading” of their documents.</p>
@@ -105,7 +94,6 @@ By Alyssa Anderson
 
 </article>
 
-<p class="revision"><a href="https://github.com/ricedh/drafts/commits/master/02-voyant.md" title="version history on GitHub">revision history for this page </a></p>
 
 <footer>
 
@@ -154,9 +142,12 @@ var sc_security="cc89e61f";
 
 <!--End contents of _footer.html which are inserted using the include-after-body option in pandoc.-->
 
-</footer>
 
-<a rel="license" style="clear:both; display:block; padding-top:2em;" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><br />This work by <a xmlns:cc="http://creativecommons.org/ns#" href="http://ricedh.github.io" property="cc:attributionName" rel="cc:attributionURL">http://ricedh.github.io</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="http://github.com/ricedh/drafts" rel="cc:morePermissions">http://github.com/ricedh/drafts</a>.
+<a rel="license" style="clear:both; display:inline-block; padding-top:2em;" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><br />This work by <a xmlns:cc="http://creativecommons.org/ns#" href="http://ricedh.github.io" property="cc:attributionName" rel="cc:attributionURL">http://ricedh.github.io</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br />Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="http://github.com/ricedh/drafts" rel="cc:morePermissions">http://github.com/ricedh/drafts</a>.
+
+<div class="revision"><a href="https://github.com/ricedh/drafts/commits/master/02-voyant.md" title="version history on GitHub">revision history for this page </a></div>
+
+</footer>
 
 </div>
 
