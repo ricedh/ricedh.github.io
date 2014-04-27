@@ -50,14 +50,14 @@ By Daniel Burns
 <!--Begin content of the main markdown file for this page, which is processed by pandoc and output as html.-->
 
 
-<p>Screen shot of MALLET topics.</p>
+<h2 id="mallet-and-topic-modelling">MALLET and Topic Modelling</h2>
+<p>In this section, we examine how the software MALLET can be used to analyze and identify subtopics within our ad database. Through the use of this tool, ads can be automatically sorted into specific categories where they can be analyzed separately. THrough this approach, newer and more specific questions can be explored within the data.</p>
 <h2 id="rationale">Rationale</h2>
-<p>Why we wanted to separate regular ads from jailor’s notices programmatically.</p>
-<p>Through our close readings of our runaway slave advertisement corpora, we quickly realized that a significant portion of the ads present were not ads posted by owners searching for runaways, but ads posted by jailers who had captive runaways and were searching for the owners. While most of the language and intent in these ads were similar, there were enough differences to justify sorting them out from the other ads. From a geographic standpoint, these ads were the end-points of slaves’ runaway journeys, and can be plotted differently than runaway ads, which serve as a starting point of slaves’ journeys. From a data analysis perspective, the ads do not include categories of information like reward value or means of escape and would interfere with the collection of consistent data from ads on those categories. Finally, the capture notices also served as an independent source of information, since sorting them out would lead to new insights on how laws on slave capture and return were put into effect, or how they varied in terms of language from ads posted by slave owners. While these ads individually can be identified and sorted out of a corpus, both the number of runaway ads being dealt with and the number of capture notices prohibited this due to time constraints. However, differences in language and terminology between the types of ads made it possible to train a computer to differentiate between them based on these variables.</p>
+<p>Through our close readings of our runaway slave advertisement corpora, we quickly realized that a significant portion of the ads present were not ads posted by owners searching for runaways, but either ads posted by jailers who had captive runaways and were searching for the owners, or ads put up by citizens who had found and captured runaway slaves. While most of the language and intent in these ads was similar, there were enough differences to justify sorting them out from the other ads. From a geographic standpoint, these ads were the end-points of slaves’ runaway journeys, and can be plotted differently than runaway ads, which serve as a starting point of slaves’ journeys. From a data analysis perspective, the ads do not include categories of information like reward value or means of escape and would interfere with the collection of consistent data from ads on those categories. Finally, the capture notices also served as an independent source of information, since sorting them out would lead to new insights on how laws on slave capture and return were put into effect, or how they varied in terms of language from ads posted by slave owners.</p>
+<p>While these ads can be individually identified and hand-sorted out of a corpus, both the number of runaway ads being dealt with and the number of capture notices make the process time prohibitive. However, differences in language and terminology between the types of ads made it possible to train a computer to differentiate between them based on these variables. Through the following sections, the methods behind this proces will be explained, and the resulting information examined.</p>
 <h2 id="methodology">Methodology</h2>
-<p>Our method for using the MALLET topic modeling package to separate ads.</p>
 <p>Our first step was to generate three topic models, one for each of the three states for which we had advertisements. To do this we downloaded and ran <a href="http://mallet.cs.umass.edu">MALLET</a>. Because <a href="index.html#our-data">our data</a> were already stored in separate text files, one for each ad, we were able to train topics on our ads using MALLET’s command-line options and a <a href="http://programminghistorian.org/lessons/topic-modeling-and-mallet">tutorial on topic modeling at the Programming Historian</a>.</p>
-<p>The methods followed were similar to those in the tutorial above. The directory was imported from the folder of ads of the respective state. That directory was then imported into MALLET, which was run to export a text file containing 10 topics from the entire ad directory. The resulting text file for Arkansas is posted below.</p>
+<p>The methods followed were similar to those in the tutorial link above. The directory was imported from the folder of ads of the respective state. That directory was then imported into MALLET, which was run to export a text file containing 10 topics from the entire ad directory. The resulting text file for Arkansas is posted below.</p>
 <pre><code>[0  5   negro county arkansas man jail living stout miles mississippi st runaway territory august twenty francis union crittenden post justice 
 1   5   years complexion dark age color aged copper ranaway woman henry ar hempstead washington phillips height wife undersigned george men 
 2   5   black white negro coat hat pantaloons left shirt blue pair cotton pants cloth jeans brown coarse wool worn colored 
@@ -69,14 +69,12 @@ By Daniel Burns
 8   5   high inches feet age years mr yellow william james inst black back miller head scars slender months lost jim 
 9   5   feet man black spoken inches small high fellow ten thirty speaks quick information nation tolerably set memphis sam securing ]</code></pre>
 <p>MALLET also outputs a spreadsheet showing the proportion of each document that is drawn from each of the topics; on each row, the filename of the document is followed by the number of the most prominent topic, followed by the proportion of the document associated with that topic. Other topics and proportions follow on the same row in decreasing order of weight.</p>
-<p>In order to separate our ads, we first identified two topics in the keys file that seemed to associated, respectively, with runaway ads and captured notices. For example, in the topic-keys listed above, topic 7 looks more like a runaway ad because of words like reward, subscriber, and delivery, while topic 5 looks more like a capture notice because of their frequent terminology like sheriff, committed, law, and jailor.</p>
+<p>In order to separate our ads, we first identified two topics in the keys file that seemed to associated, respectively, with runaway ads and capture notices. For example, in the topic-keys listed above, topic 7 looks more like a runaway ad because of words like reward, subscriber, and delivery, while topic 5 looks more like a capture notice because of their frequent terminology like sheriff, committed, law, and jailor.</p>
 <p>Thus, we hypothesized that documents in which topic 7 was more prominent than topic 5 were more likely to be runaway ads, while documents in which topic 5 was more prominent than topic 7 were likely to be capture notices. A <a href="https://github.com/ricedh/adparsers/blob/master/divide_docs.py">Python script</a>, <code>divide_docs.py</code>, enabled us to test this assumption. The script analyzes the tab-delimited file output by MALLET and separates the files in each row into two directories, based on whether topic 5 or topic 7 appears first in that file’s row. We were then able to perform a close reading on some of the separated files to see whether we had accurately separated ads for captured slaves from those that had not been captured.</p>
 <h2 id="conclusions">Conclusions</h2>
-<p>Findings, questions, limitations</p>
 <p>One concern with the use of topic modeling was the overall accuracy of the computer’s ability to discriminate between similar ads. Through analysis of the topic models for various states, it was found to have a high degree of reliability. Out of the 398 Texas Gazette ads, the topic model sorting method split the ads into 195 capture notices and 203 runaway ads. Manually searching the text of these sorted ads, we found there were 3 incorrectly identified ads in the capture notices and 1 in the runaway ads. In this set, there was a 99% accuracy for differentiating between ads. The Arkansas data set provided similar results. Out of 199 capture notices, 9 were found in error; out of 289 runaway ads, only 6 were in error. This gave the second data set an overall accuracy of 97%. With these results, it is possible to trust the results from the topic models to within a reasonable margin of error.</p>
-<p>However, there are limitations to this approach. The first issue is the fact that there are always exceptions in the content of the material. One ad discovered in the Texas Gazette text was the report of a runaway slave found dead. This was identified by the topic model as strongly related to the runaway topic, even though the ad itself was a report of death. In the Arkansas ads, another ad was the report of a captured runaway who had escaped and run from the jailor. While this ad fell into both categories, the system used would only sort the ad into one set, thus leaving it out of the other data set.</p>
+<p>However, there are limitations to this approach. The first issue is the fact that there are always exceptions in the content of the material. [One ad] (http://texashistory.unt.edu/ark:/67531/metapth81420/m1/3/zoom/?zoom=5&amp;lat=6160&amp;lon=744&amp;layers=BT) discovered in the Texas Gazette text was the report of a runaway slave found dead. This was identified by the topic model as strongly related to the runaway topic, even though the ad itself was a report of death. In the [Arkansas ads] (http://aquila.usm.edu/cgi/viewcontent.cgi?article=1000&amp;context=drs), another ad was the report of a captured runaway who had escaped and run from the jailor. While this ad fell into both categories, the system used would only sort the ad into one set, thus leaving it out of the other data set.</p>
 <p>Another limitation is the drop in accuracy as the number of topics allowed in the original program are increased. For the Arkansas ads, when searched with 15 topics rather than the original 10, the accuracy dropped significantly. In a set of 278 ads, 45 were incorrectly identified, dropping the accuracy to 84%.</p>
-<p>(I can potentially put charts of the number of ads over time in here, but I’ve graphed them all out, and there aren’t a lot of obvious conclusions to draw from them. Would we rather include more data, or stick to the main subject?)</p>
 
 <!--End content from the main markdown file for this page.-->
 
@@ -118,15 +116,21 @@ By Daniel Burns
 <!--Statcounter-->
 
 <script type="text/javascript">
-var sc_project=2874620; 
-var sc_invisible=0; 
-var sc_partition=29; 
-var sc_security="cc89e61f"; 
+var sc_project=9768347; 
+var sc_invisible=1; 
+var sc_security="a018b079"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
 </script>
 
-<script type="text/javascript" src="http://www.statcounter.com/counter/counter_xhtml.js"></script>
-
-<noscript><div class="statcounter"><a class="statcounter" href="http://www.statcounter.com/"><img class="statcounter" src="http://c30.statcounter.com/2874620/0/cc89e61f/0/" alt="invisible hit counter" /></a></div></noscript>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="http://c.statcounter.com/9768347/0/a018b079/1/"
+alt="web analytics"></a></div></noscript>
 
 <!--End contents of _footer.html which are inserted using the include-after-body option in pandoc.-->
 
