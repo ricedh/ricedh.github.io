@@ -6,7 +6,7 @@
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!--This page was produced by pandoc using a shell script. See http://wcm1.web.rice.edu/colophon.html for more information.-->
-  <meta name="author" content="Daniel Burns" />
+  <meta name="author" content="Daniel Burns and Caleb McDaniel" />
   <title>Grouping Documents with Topic Models | Digital History Methods</title>
   <link rel="stylesheet" href="./bootstrap.css" type="text/css" />
   <link rel="stylesheet" href="./main.css" type="text/css" />
@@ -44,7 +44,7 @@
 <h1>Grouping Documents with Topic Models</h1>
 <!--The author is produced by the pandoc template using the title block at the top of the markdown file-->
 <div id="dateline">
-By Daniel Burns
+By Daniel Burns and Caleb McDaniel
 </div>
 
 <!--Begin content of the main markdown file for this page, which is processed by pandoc and output as html.-->
@@ -75,17 +75,14 @@ By Daniel Burns
 <p>However, there are limitations to this approach. The first issue is the fact that there are always exceptions in the content of the material. <a href="http://texashistory.unt.edu/ark:/67531/metapth81420/m1/3/zoom/?zoom=5&amp;lat=6160&amp;lon=744&amp;layers=BT">One ad</a> discovered in the Texas Gazette text was the report of a runaway slave found dead. This was identified by the topic model as strongly related to the runaway topic, even though the ad itself was a report of death. In the <a href="http://aquila.usm.edu/cgi/viewcontent.cgi?article=1000&amp;context=drs">Arkansas ads</a>, another ad was the report of a captured runaway who had escaped and run from the jailor. While this ad fell into both categories, the system used would only sort the ad into one set, thus leaving it out of the other data set.</p>
 <p>Another limitation is the drop in accuracy as the number of topics allowed in the original program are increased. For the Arkansas ads, when searched with 15 topics rather than the original 10, the accuracy dropped significantly. In a set of 278 ads, 45 were incorrectly identified, dropping the accuracy to 84%.</p>
 <p>From the sorted ads, there are a number of questions that can either be answered, or explored more fully. One issue we were running across during our close reading of the ads was the amount of variation between quantities of runaway ads and capture notices. Certain states had specific times where there was a much higher ratio of capture notices to runaway ads. Through use of another script designed to count the sorted ads by year, month, and decade, we established the following data, regarding the frequency of ad types over time. <strong>Blue</strong> represents all capture notices, and <strong>red</strong> represents all runaway ads.</p>
-<p><strong>Texas Gazette</strong></p>
 <div class="figure">
-<img src="https://cloud.githubusercontent.com/assets/6432995/2813265/6f086a7e-ce82-11e3-970d-515535b357b2.png" alt="texgazchart2" /><p class="caption">texgazchart2</p>
+<img src="https://cloud.githubusercontent.com/assets/6432995/2813265/6f086a7e-ce82-11e3-970d-515535b357b2.png" alt="Ads about Runaways in the Austin Gazette" /><p class="caption">Ads about Runaways in the Austin <em>Gazette</em></p>
 </div>
-<p><strong>All Arkasas Ads</strong></p>
 <div class="figure">
-<img src="https://cloud.githubusercontent.com/assets/6432995/2813272/8926f0ce-ce82-11e3-9a16-220ba8552a7b.png" alt="arkansaschart2" /><p class="caption">arkansaschart2</p>
+<img src="https://cloud.githubusercontent.com/assets/6432995/2813272/8926f0ce-ce82-11e3-9a16-220ba8552a7b.png" alt="Ads about Runaways in Arkansas Newspapers" /><p class="caption">Ads about Runaways in Arkansas Newspapers</p>
 </div>
-<p><strong>All Mississippi Ads</strong></p>
 <div class="figure">
-<img src="https://cloud.githubusercontent.com/assets/6432995/2813275/9a0bcb3a-ce82-11e3-9c93-69afaa6180cc.png" alt="mississippi chart 2" /><p class="caption">mississippi chart 2</p>
+<img src="https://cloud.githubusercontent.com/assets/6432995/2813275/9a0bcb3a-ce82-11e3-9c93-69afaa6180cc.png" alt="Ads about Runaways in Mississippi Newspapers" /><p class="caption">Ads about Runaways in Mississippi Newspapers</p>
 </div>
 <p>From here, the change in the quantity of ads over time can be examined. Various historical events, in particular nationwide or state-specific laws, can be examined in conjuction with the changes of ads, to look for potential causation for these variations.</p>
 <p>There is significant potential for additional exploration of the ad text through these tools. Even beyond these specific categories, further sorting of the ads through topic modelling is possible. Within the capture notices, there are different categories between jailer’s notices and citizen captures of slaves that could be differentiated. The runaway ads also include ads for slaves that were supposedly stolen, which are written in different enough language that they could be removed into a new subset of ads. In addition to increased sorting, the ads can also be examined with text mining. The text analysis tool Voyant could be applied to the narrowed sets of ads to look for specific trends in the language, through the methods explained <a href="http://ricedh.github.io/02-voyant.html">here</a>. Sorting the ads through MALLET is one step in many that can be taken to find and answer significant historical questions about the history of slavery.</p>
