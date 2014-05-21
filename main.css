@@ -5,7 +5,7 @@ html { overflow-y: scroll; }
 /* BODY */
 
 body {
- font-family: "Calendas Plus", "Crimson Text", "Hoefler Text", "Georgia", serif;
+ font-family: "Hoefler Text", "Georgia", "Calendas Plus", "Crimson Text", serif;
  /* color: #3b3b3b; */
  -webkit-font-smoothing: antialiased;
  /* Fix for webkit rendering */
